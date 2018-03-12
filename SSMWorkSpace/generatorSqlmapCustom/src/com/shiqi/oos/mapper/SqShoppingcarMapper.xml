@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiqi.oos.mapper.SqShoppingcarMapper" >
+  <resultMap id="BaseResultMap" type="com.shiqi.oos.entity.SqShoppingcar" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="shopNum" property="shopnum" jdbcType="INTEGER" />
+    <result column="totalPirce" property="totalpirce" jdbcType="INTEGER" />
+    <result column="diningTableId" property="diningtableid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createtime, updatetime, userid, shopNum, totalPirce, diningTableId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiqi.oos.entity.SqShoppingcarExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sq_shoppingCar
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sq_shoppingCar
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sq_shoppingCar
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiqi.oos.entity.SqShoppingcarExample" >
+    delete from sq_shoppingCar
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiqi.oos.entity.SqShoppingcar" >
+    insert into sq_shoppingCar (id, createtime, updatetime, 
+      userid, shopNum, totalPirce, 
+      diningTableId)
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=VARCHAR}, #{shopnum,jdbcType=INTEGER}, #{totalpirce,jdbcType=INTEGER}, 
+      #{diningtableid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiqi.oos.entity.SqShoppingcar" >
+    insert into sq_shoppingCar
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="shopnum != null" >
+        shopNum,
+      </if>
+      <if test="totalpirce != null" >
+        totalPirce,
+      </if>
+      <if test="diningtableid != null" >
+        diningTableId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopnum != null" >
+        #{shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="totalpirce != null" >
+        #{totalpirce,jdbcType=INTEGER},
+      </if>
+      <if test="diningtableid != null" >
+        #{diningtableid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiqi.oos.entity.SqShoppingcarExample" resultType="java.lang.Integer" >
+    select count(*) from sq_shoppingCar
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sq_shoppingCar
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopnum != null" >
+        shopNum = #{record.shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalpirce != null" >
+        totalPirce = #{record.totalpirce,jdbcType=INTEGER},
+      </if>
+      <if test="record.diningtableid != null" >
+        diningTableId = #{record.diningtableid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sq_shoppingCar
+    set id = #{record.id,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      userid = #{record.userid,jdbcType=VARCHAR},
+      shopNum = #{record.shopnum,jdbcType=INTEGER},
+      totalPirce = #{record.totalpirce,jdbcType=INTEGER},
+      diningTableId = #{record.diningtableid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiqi.oos.entity.SqShoppingcar" >
+    update sq_shoppingCar
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopnum != null" >
+        shopNum = #{shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="totalpirce != null" >
+        totalPirce = #{totalpirce,jdbcType=INTEGER},
+      </if>
+      <if test="diningtableid != null" >
+        diningTableId = #{diningtableid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiqi.oos.entity.SqShoppingcar" >
+    update sq_shoppingCar
+    set createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=VARCHAR},
+      shopNum = #{shopnum,jdbcType=INTEGER},
+      totalPirce = #{totalpirce,jdbcType=INTEGER},
+      diningTableId = #{diningtableid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
