@@ -10,7 +10,39 @@
     <result column="shopNum" property="shopnum" jdbcType="INTEGER" />
     <result column="xiaoji" property="xiaoji" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
+    <!-- 一对一映射商品详情 -->
+    		<collection property="dishes" column="id" ofType="com.shiqi.oos.entity.SqDishes">  
+	        <id column="dishes_id" property="id" jdbcType="VARCHAR" />
+		    <result column="typeid" property="typeid" jdbcType="VARCHAR" />
+		    <result column="originalprice" property="originalprice" jdbcType="VARCHAR" />
+		    <result column="price" property="price" jdbcType="VARCHAR" />
+		    <result column="isvip" property="isvip" jdbcType="VARCHAR" />
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+		    <result column="pic" property="pic" jdbcType="VARCHAR" />
+		    <!-- 一对一映射菜品类型 -->
+	    		<collection property="dishestype" column="id" ofType="com.shiqi.oos.entity.SqDishestype">  
+		        <id column="dt_id" property="id" jdbcType="VARCHAR" />
+			    <result column="typeName" property="name" jdbcType="VARCHAR" />
+			    <result column="isShowOnHome" property="isshowonhome" jdbcType="VARCHAR" />
+			    <result column="zindex" property="zindex" jdbcType="INTEGER" />
+		    </collection>
+	    </collection>
   </resultMap>
+  
+  <!-- 根据购物车id查询购物车详情，带商品 -->
+<select id="selectNotFoodByCarId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+SELECT
+	sd.*,d.id as dishes_id,d.*,dt.*,dt.name as typename,dt.id as dt_id
+FROM
+	sq_shoppingCarDetail sd ,
+	sq_dishes d,
+	sq_dishesType dt
+WHERE
+	sd.shopId = d.id
+AND sd.status=#{1}
+AND d.typeId=dt.id
+AND sd.shoppingCarId = #{0}
+</select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

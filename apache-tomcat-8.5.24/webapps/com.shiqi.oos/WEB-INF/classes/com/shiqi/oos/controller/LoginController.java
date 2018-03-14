@@ -62,7 +62,8 @@ public class LoginController {
 					e.printStackTrace();
 
 					request.setAttribute("errorMsg", "用户名密码不匹配");
-					request.getRequestDispatcher(baseURL + "/login.jsp").forward(request, response);
+					request.getRequestDispatcher("/login.jsp").forward(request, response);
+					return;
 				}
 				SqUser user = (SqUser) subject.getPrincipal();
 				
@@ -97,7 +98,7 @@ public class LoginController {
 	public void logout(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			request.getSession().removeAttribute("user");
-			response.sendRedirect("login.jsp");
+			response.sendRedirect(request.getContextPath() + "/login.jsp");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

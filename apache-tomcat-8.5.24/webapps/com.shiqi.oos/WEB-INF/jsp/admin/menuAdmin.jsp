@@ -271,7 +271,10 @@
 								return "<a href='#' class='btn_01_mini' onclick='edit_menu(\""+rec.id+"\")'>修改<b></b></a>"
 										  +"<a href='#' class='btn_01_mini' onclick='editmenuRoles(\""+rec.id+"\")'>角色设置<b></b></a>";
 							}}
-				        ]]
+				        ]],
+			onDblClickRow:function(index,data){
+				edit_menu(data.id);
+			}
 	});
 	
 	//查询
