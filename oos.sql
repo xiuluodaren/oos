@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : utf-8
 
- Date: 03/06/2018 15:32:40 PM
+ Date: 03/14/2018 18:13:07 PM
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `sq_diningTable` (
 --  Records of `sq_diningTable`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_diningTable` VALUES ('1', '151831372111583', '8', '1'), ('11', null, '4', '0'), ('12', null, '4', '0'), ('13', null, '4', '0'), ('14', null, '4', '0'), ('16', null, '2', '0'), ('17', null, '4', '0'), ('18', null, '4', '0'), ('19', null, '4', '0'), ('2', null, '4', '0'), ('20', null, '4', '0'), ('28', null, '4', '0'), ('29', null, '4', '0'), ('3', null, '2', '0'), ('30', null, '4', '0'), ('4', null, '2', '0'), ('5', null, '2', '0'), ('6', null, '2', '0'), ('7', null, '2', '0'), ('8', null, '2', '0'), ('9', '151832192254900', '4', '1');
+INSERT INTO `sq_diningTable` VALUES ('1', null, '8', '1'), ('11', null, '4', '1'), ('12', '152034173668664', '4', '1'), ('13', '152101583034624', '4', '1'), ('14', null, '4', '0'), ('16', null, '2', '0'), ('17', null, '4', '0'), ('18', null, '4', '0'), ('19', null, '4', '0'), ('2', null, '4', '0'), ('20', null, '4', '0'), ('28', null, '4', '0'), ('29', null, '4', '0'), ('3', null, '2', '0'), ('30', null, '4', '0'), ('4', null, '2', '0'), ('5', null, '2', '0'), ('6', null, '2', '0'), ('7', null, '2', '0'), ('8', null, '2', '0'), ('9', null, '4', '1');
 COMMIT;
 
 -- ----------------------------
@@ -58,7 +58,7 @@ CREATE TABLE `sq_dishes` (
 --  Records of `sq_dishes`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_dishes` VALUES ('1', '1', '10', '8', '1', '凉菜1', '/images/test1.jpg'), ('2', '1', '10', '10', '0', '凉菜2', '/images/test1.jpg'), ('3', '1', '10', '8', '1', '凉菜3', '/images/test1.jpg'), ('4', '1', '10', '8', '1', '凉菜4', '/images/test1.jpg'), ('5', '1', '10', '8', '1', '凉菜5', '/images/test1.jpg'), ('6', '1', '10', '8', '1', '凉菜6', '/images/test1.jpg');
+INSERT INTO `sq_dishes` VALUES ('1', '1', '10', '8', '1', '凉菜1', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('100', '3', '10', '8', '0', '这是测试菜品', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('2', '1', '10', '8', '1', '凉菜2', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('3', '1', '10', '8', '1', '凉菜3', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('4', '1', '10', '8', '1', '凉菜4', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('6', '1', '10', '8', '1', '凉菜6', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('7', '1', '20', '18', '1', '凉皮', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg'), ('8', '1', '12', '8', '1', '荠菜粉', '/2018-03-12/2cf5a4d8-c90d-4c0a-b70a-494f3617ea21.jpg');
 COMMIT;
 
 -- ----------------------------
@@ -77,7 +77,7 @@ CREATE TABLE `sq_dishesType` (
 --  Records of `sq_dishesType`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_dishesType` VALUES ('1', '凉菜', '1', '1'), ('2', '酒水', '1', '4'), ('3', '川菜', '1', '2'), ('4', '徽菜', '1', '3');
+INSERT INTO `sq_dishesType` VALUES ('1', '凉菜', '1', '1'), ('2', '酒水', '1', '2'), ('3', '川菜', '1', '3'), ('4', '徽菜', '1', '4');
 COMMIT;
 
 -- ----------------------------
@@ -99,7 +99,7 @@ CREATE TABLE `sq_menu` (
 --  Records of `sq_menu`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('10', '充值管理', '2', null, '4'), ('11', '充值记录查询', '10', null, '0'), ('12', '用户充值', '10', null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '查看总收入', '13', null, '0'), ('15', '收入明细查询', '13', null, '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', null, '3'), ('5', '配餐', '1', null, '4'), ('6', '收银', '1', null, '5'), ('7', '菜单管理', '2', '/page/admin/dishesAdmin', '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
+INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('10', '充值管理', '2', null, '4'), ('11', '充值记录查询', '10', null, '0'), ('12', '用户充值', '10', null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '查看总收入', '13', null, '0'), ('15', '收入明细查询', '13', null, '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('20', '菜品管理', '7', '/dishes/getUI', '0'), ('21', '菜品类型管理', '7', '/page/admin/dishesTypeAdmin', '1'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', '/page/baseFunction/Serving', '4'), ('5', '配餐', '1', '/page/baseFunction/Food', '3'), ('6', '收银', '1', null, '5'), ('7', '菜单管理', '2', null, '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
 COMMIT;
 
 -- ----------------------------
@@ -117,7 +117,7 @@ CREATE TABLE `sq_role` (
 --  Records of `sq_role`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_role` VALUES ('00', '超级管理员', '0'), ('01', '用户', '0'), ('02', '服务员', '1'), ('03', '厨师', '2'), ('04', '收银员', '3'), ('05', '管理员', '4');
+INSERT INTO `sq_role` VALUES ('00', '超级管理员', '2'), ('01', '用户', '1'), ('02', '服务员', '1'), ('03', '厨师', '1'), ('04', '收银员', '3'), ('05', '管理员', '4');
 COMMIT;
 
 -- ----------------------------
@@ -159,6 +159,13 @@ CREATE TABLE `sq_shoppingCar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+--  Records of `sq_shoppingCar`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sq_shoppingCar` VALUES ('152034173668664', '2018-03-06 21:08:57', '2018-03-06 21:08:57', '0', '7', '66', '12'), ('152101583034624', '2018-03-14 16:23:50', '2018-03-14 16:23:50', '152032032124707', '6', '52', '13');
+COMMIT;
+
+-- ----------------------------
 --  Table structure for `sq_shoppingCarDetail`
 -- ----------------------------
 DROP TABLE IF EXISTS `sq_shoppingCarDetail`;
@@ -170,13 +177,20 @@ CREATE TABLE `sq_shoppingCarDetail` (
   `updateTime` datetime DEFAULT NULL COMMENT '修改时间',
   `shopNum` int(11) DEFAULT NULL COMMENT '商品数量',
   `xiaoji` int(255) DEFAULT NULL COMMENT '小计',
-  `status` varchar(255) DEFAULT '0' COMMENT '0未准备 1准备中 2已上菜',
+  `status` varchar(255) DEFAULT '0' COMMENT '0未准备 1配菜中 2待上菜 3已上菜',
   PRIMARY KEY (`id`),
   KEY `fk_sq_shoppingCarDetail` (`shoppingCarId`),
   KEY `fk_sq_shoppingCarDetail_1` (`shopId`),
-  CONSTRAINT `fk_sq_shoppingCarDetail` FOREIGN KEY (`shoppingCarId`) REFERENCES `sq_shoppingCar` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_sq_shoppingCarDetail_1` FOREIGN KEY (`shopId`) REFERENCES `sq_dishes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_sq_shoppingCarDetail` FOREIGN KEY (`shoppingCarId`) REFERENCES `sq_shoppingCar` (`id`),
+  CONSTRAINT `fk_sq_shoppingCarDetail_1` FOREIGN KEY (`shopId`) REFERENCES `sq_dishes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+--  Records of `sq_shoppingCarDetail`
+-- ----------------------------
+BEGIN;
+INSERT INTO `sq_shoppingCarDetail` VALUES ('152034173903568', '152034173668664', '3', '2018-03-06 21:08:59', '2018-03-06 21:08:59', '2', '16', '0'), ('152057841798692', '152034173668664', '100', '2018-03-09 14:53:38', '2018-03-09 17:59:38', '5', '50', '0'), ('152101583034661', '152101583034624', '1', '2018-03-14 16:23:50', '2018-03-14 16:23:50', '1', '8', '0'), ('152101583218406', '152101583034624', '2', '2018-03-14 16:23:52', '2018-03-14 16:23:52', '1', '8', '0'), ('152101583405060', '152101583034624', '4', '2018-03-14 16:23:54', '2018-03-14 16:23:54', '1', '8', '0'), ('152101583543476', '152101583034624', '3', '2018-03-14 16:23:55', '2018-03-14 16:23:55', '1', '8', '0'), ('152101583801878', '152101583034624', '100', '2018-03-14 16:23:58', '2018-03-14 16:24:00', '2', '20', '3');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `sq_user`
@@ -195,7 +209,7 @@ CREATE TABLE `sq_user` (
 --  Records of `sq_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_user` VALUES ('0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032032124707', '用户', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032035802241', '服务员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032037461347', '厨师', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032038491448', '收银员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032039532188', '管理员', 'e10adc3949ba59abbe56e057f20f883e', '0');
+INSERT INTO `sq_user` VALUES ('0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032032124707', '用户', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032035802241', '服务员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032037461347', '厨师', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032038491448', '收银员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032039532188', '管理员', 'e10adc3949ba59abbe56e057f20f883e', '0');
 COMMIT;
 
 -- ----------------------------
