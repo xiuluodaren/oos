@@ -149,9 +149,10 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="com.shiqi.oos" path="/shiqi.oos" reloadable="true" source="org.eclipse.jst.jee.server:com.shiqi.oos"/>
-      <Context docBase="/Volumes/MacOS资料/文稿/王诗奇/uploadImages/" path="/shiqi.oos/uploadImages/" reloadable="false"/>
-      </Host>
+	      
+	      <Context docBase="/Volumes/MacOS资料/文稿/oos/uploadImages/" path="/shiqi.oos/uploadImages" reloadable="false"/>
+      
+      <Context docBase="com.shiqi.oos" path="/shiqi.oos" reloadable="true" source="org.eclipse.jst.jee.server:com.shiqi.oos"/></Host>
     </Engine>
   </Service>
 </Server>

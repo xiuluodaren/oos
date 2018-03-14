@@ -27,4 +27,7 @@ public interface SqShoppingcardetailMapper {
     int updateByPrimaryKeySelective(SqShoppingcardetail record);
 
     int updateByPrimaryKey(SqShoppingcardetail record);
+    
+    List<SqShoppingcardetail> selectNotFoodByCarId(String carId,String status);
+    
 }
