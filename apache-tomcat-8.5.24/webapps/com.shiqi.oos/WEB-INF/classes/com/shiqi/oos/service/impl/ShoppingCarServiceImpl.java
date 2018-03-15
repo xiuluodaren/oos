@@ -2,11 +2,16 @@ package com.shiqi.oos.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ObjectUtils.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.mysql.fabric.xmlrpc.base.Data;
 import com.shiqi.oos.entity.SqDiningtable;
 import com.shiqi.oos.entity.SqDishes;
@@ -179,7 +184,7 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 			shoppingcardetailMapper.updateByPrimaryKey(detali);
 		}
 		 
-		car.setTotalpirce(totalPrice);
+		car.setTotalprice(totalPrice);
 		car.setShopnum(count);
 		shoppingCarMapper.updateByPrimaryKey(car);
 		
@@ -230,4 +235,31 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 		return true;
 	}
 	 
+
+	/**
+	 * 查询全部购物车
+	 * @param page
+	 * @param rows
+	 * @param diningTableId
+	 * @param username
+	 * @return
+	 */
+	public List<SqShoppingcar> findEasyUI(String diningTableId, String username)
+	{
+		
+		if (StringUtils.isBlank(diningTableId)) {
+			diningTableId = null;
+		} 
+		
+		if (StringUtils.isBlank(username)) {
+			username = null;
+		}
+		
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("diningTableId", diningTableId);
+		map.put("username", username);
+		
+		return shoppingCarMapper.selectByDiningTableIdAndUsername(map);
+	}
+	
 }

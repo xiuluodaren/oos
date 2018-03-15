@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>桌位管理</title>
+<title>用户管理</title>
 <!-- 导入easyui类库 -->
 <link id="easyuiTheme" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
@@ -33,7 +33,7 @@
 
 	$(function(){
 		$('#datagrid').datagrid({
-			title:'购物车',
+			title:'用户',
 			width:500,
 			height:250,
 			remoteSort:false,
@@ -163,7 +163,7 @@
 		var rows = $('#datagrid').datagrid("getSelections");
 		
 		if (rows == null || rows.length == 0 || rows.length > 1) {
-			$.messager.confirm("提示","请选择一个要修改的餐桌",function(data){
+			$.messager.confirm("提示","请选择一个要修改的用户",function(data){
 				
 			});
 		}else{

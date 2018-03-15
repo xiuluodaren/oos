@@ -27,13 +27,12 @@
 <script type="text/javascript">
 
 	$(function(){
-		
 		//ajax轮询刷新数据
 		 window.setInterval(function(){
 			 $('#datagrid').datagrid({
 				 url:'${pageContext.request.contextPath }/food/findEasyUI'
 			 });
-		 },30000);
+		 },AjaxTime);
 		
 		$('#datagrid').datagrid({
 			title:'配餐',

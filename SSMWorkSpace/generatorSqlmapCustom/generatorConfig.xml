@@ -52,6 +52,8 @@
 		<table schema="" tableName="sq_role"></table>
 		<table schema="" tableName="sq_user_role"></table>
 		<table schema="" tableName="sq_role_menu"></table>
+		<table schema="" tableName="sq_order"></table>
+		<table schema="" tableName="sq_orderDetail"></table>
 
 	</context>
 </generatorConfiguration>

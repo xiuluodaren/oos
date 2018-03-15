@@ -44,4 +44,12 @@ public interface IShoppingCarService {
 	 */
 	boolean confirmOrder(String zhuohao, String id);
 
+	/**
+	 * 查询全部购物车
+	 * @param diningTableId
+	 * @param username
+	 * @return
+	 */
+	List<SqShoppingcar> findEasyUI(String diningTableId, String username);
+	
 }

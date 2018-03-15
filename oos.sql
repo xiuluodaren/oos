@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : utf-8
 
- Date: 03/14/2018 18:13:07 PM
+ Date: 03/15/2018 19:28:51 PM
 */
 
 SET NAMES utf8mb4;
@@ -99,8 +99,50 @@ CREATE TABLE `sq_menu` (
 --  Records of `sq_menu`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('10', '充值管理', '2', null, '4'), ('11', '充值记录查询', '10', null, '0'), ('12', '用户充值', '10', null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '查看总收入', '13', null, '0'), ('15', '收入明细查询', '13', null, '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('20', '菜品管理', '7', '/dishes/getUI', '0'), ('21', '菜品类型管理', '7', '/page/admin/dishesTypeAdmin', '1'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', '/page/baseFunction/Serving', '4'), ('5', '配餐', '1', '/page/baseFunction/Food', '3'), ('6', '收银', '1', null, '5'), ('7', '菜单管理', '2', null, '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
+INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('10', '充值管理', '2', null, '4'), ('11', '充值记录查询', '10', null, '0'), ('12', '用户充值', '10', null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '查看总收入', '13', null, '0'), ('15', '收入明细查询', '13', null, '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('20', '菜品管理', '7', '/dishes/getUI', '0'), ('21', '菜品类型管理', '7', '/page/admin/dishesTypeAdmin', '1'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', '/page/baseFunction/Serving', '4'), ('5', '配餐', '1', '/page/baseFunction/Food', '3'), ('6', '收银', '1', '/page/baseFunction/Cashier', '5'), ('7', '菜单管理', '2', null, '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `sq_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `sq_order`;
+CREATE TABLE `sq_order` (
+  `id` varchar(32) NOT NULL,
+  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `updateTime` datetime DEFAULT NULL COMMENT '修改时间',
+  `userId` varchar(32) DEFAULT NULL COMMENT '用户id',
+  `userName` varchar(32) DEFAULT NULL COMMENT '用户名',
+  `totalprice` varchar(32) DEFAULT NULL COMMENT '无折扣商品总价',
+  `shopnum` int(11) DEFAULT NULL COMMENT '商品数量',
+  `isdiscount` varchar(255) DEFAULT NULL COMMENT '是否有折扣',
+  `discount` varchar(255) DEFAULT NULL COMMENT '折扣钱数',
+  `receivable` varchar(255) DEFAULT NULL COMMENT '应收钱数',
+  `realPrice` varchar(32) DEFAULT NULL COMMENT '实收钱数',
+  `change` varchar(255) DEFAULT NULL COMMENT '找零',
+  `operatorId` varchar(255) DEFAULT NULL COMMENT '操作人(收银员)id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+--  Table structure for `sq_orderDetail`
+-- ----------------------------
+DROP TABLE IF EXISTS `sq_orderDetail`;
+CREATE TABLE `sq_orderDetail` (
+  `id` varchar(32) NOT NULL COMMENT '订单详情id',
+  `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `updateTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `orderId` varchar(32) DEFAULT NULL COMMENT '订单id',
+  `shopId` varchar(32) DEFAULT NULL COMMENT '商品id',
+  `name` varchar(255) DEFAULT NULL COMMENT '商品名称',
+  `originalprice` varchar(32) DEFAULT NULL COMMENT '商品原价',
+  `price` varchar(10) DEFAULT NULL COMMENT '商品优惠后价格',
+  `isvip` varchar(255) DEFAULT NULL COMMENT '是否打折商品',
+  `shopnum` int(11) DEFAULT NULL COMMENT '商品数量',
+  `xiaoji` varchar(255) DEFAULT NULL COMMENT '小计',
+  PRIMARY KEY (`id`),
+  KEY `fk_sq_orderDetail` (`orderId`),
+  CONSTRAINT `fk_sq_orderDetail` FOREIGN KEY (`orderId`) REFERENCES `sq_order` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Table structure for `sq_role`
@@ -150,7 +192,7 @@ CREATE TABLE `sq_shoppingCar` (
   `updatetime` datetime DEFAULT NULL COMMENT '修改时间',
   `userid` varchar(32) DEFAULT NULL COMMENT '用户id',
   `shopNum` int(11) DEFAULT NULL COMMENT '商品数量',
-  `totalPirce` int(255) DEFAULT NULL COMMENT '总价',
+  `totalPrice` int(255) DEFAULT NULL COMMENT '总价',
   `diningTableId` varchar(32) DEFAULT NULL COMMENT '餐桌 id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `weiyi` (`diningTableId`) USING HASH,
@@ -189,7 +231,7 @@ CREATE TABLE `sq_shoppingCarDetail` (
 --  Records of `sq_shoppingCarDetail`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_shoppingCarDetail` VALUES ('152034173903568', '152034173668664', '3', '2018-03-06 21:08:59', '2018-03-06 21:08:59', '2', '16', '0'), ('152057841798692', '152034173668664', '100', '2018-03-09 14:53:38', '2018-03-09 17:59:38', '5', '50', '0'), ('152101583034661', '152101583034624', '1', '2018-03-14 16:23:50', '2018-03-14 16:23:50', '1', '8', '0'), ('152101583218406', '152101583034624', '2', '2018-03-14 16:23:52', '2018-03-14 16:23:52', '1', '8', '0'), ('152101583405060', '152101583034624', '4', '2018-03-14 16:23:54', '2018-03-14 16:23:54', '1', '8', '0'), ('152101583543476', '152101583034624', '3', '2018-03-14 16:23:55', '2018-03-14 16:23:55', '1', '8', '0'), ('152101583801878', '152101583034624', '100', '2018-03-14 16:23:58', '2018-03-14 16:24:00', '2', '20', '3');
+INSERT INTO `sq_shoppingCarDetail` VALUES ('152034173903568', '152034173668664', '3', '2018-03-06 21:08:59', '2018-03-06 21:08:59', '2', '16', '0'), ('152057841798692', '152034173668664', '100', '2018-03-09 14:53:38', '2018-03-09 17:59:38', '5', '50', '0'), ('152101583034661', '152101583034624', '1', '2018-03-14 16:23:50', '2018-03-14 16:23:50', '1', '8', '0'), ('152101583218406', '152101583034624', '2', '2018-03-14 16:23:52', '2018-03-14 16:23:52', '1', '8', '2'), ('152101583405060', '152101583034624', '4', '2018-03-14 16:23:54', '2018-03-14 16:23:54', '1', '8', '0'), ('152101583543476', '152101583034624', '3', '2018-03-14 16:23:55', '2018-03-14 16:23:55', '1', '8', '2'), ('152101583801878', '152101583034624', '100', '2018-03-14 16:23:58', '2018-03-14 16:24:00', '2', '20', '3');
 COMMIT;
 
 -- ----------------------------
@@ -209,7 +251,7 @@ CREATE TABLE `sq_user` (
 --  Records of `sq_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_user` VALUES ('0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032032124707', '用户', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032035802241', '服务员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032037461347', '厨师', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032038491448', '收银员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032039532188', '管理员', 'e10adc3949ba59abbe56e057f20f883e', '0');
+INSERT INTO `sq_user` VALUES ('0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1'), ('152032032124707', '用户', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032035802241', '服务员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032037461347', '厨师', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032038491448', '收银员', 'e10adc3949ba59abbe56e057f20f883e', '0'), ('152032039532188', '管理员', 'e10adc3949ba59abbe56e057f20f883e', '0');
 COMMIT;
 
 -- ----------------------------

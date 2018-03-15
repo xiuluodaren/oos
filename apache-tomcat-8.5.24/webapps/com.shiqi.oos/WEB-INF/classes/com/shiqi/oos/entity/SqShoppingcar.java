@@ -14,11 +14,13 @@ public class SqShoppingcar {
 
     private Integer shopnum;
 
-    private Integer totalpirce;
+    private Integer totalprice;
 
     private String diningtableid;
 
     private List<SqShoppingcardetail> shoppingcardetails;
+    
+    private SqUser user;
     
     public List<SqShoppingcardetail> getShoppingcardetails() {
 		return shoppingcardetails;
@@ -68,12 +70,12 @@ public class SqShoppingcar {
         this.shopnum = shopnum;
     }
 
-    public Integer getTotalpirce() {
-        return totalpirce;
+    public Integer getTotalprice() {
+        return totalprice;
     }
 
-    public void setTotalpirce(Integer totalpirce) {
-        this.totalpirce = totalpirce;
+    public void setTotalprice(Integer totalprice) {
+        this.totalprice = totalprice;
     }
 
     public String getDiningtableid() {
@@ -83,4 +85,12 @@ public class SqShoppingcar {
     public void setDiningtableid(String diningtableid) {
         this.diningtableid = diningtableid == null ? null : diningtableid.trim();
     }
+
+	public SqUser getUser() {
+		return user;
+	}
+
+	public void setUser(SqUser user) {
+		this.user = user;
+	}
 }

@@ -5,6 +5,9 @@
  * @Date 2018年2月6日 下午4:35:23
  */
 
+//配餐上菜ajax轮询时间，单位毫秒
+var AjaxTime = 30000;
+
 //13位时间戳转日期 yyyy-MM-dd hh:mm:ss
 function timestampToTime(timestamp) {
     var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiqi.oos.mapper.SqOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.shiqi.oos.entity.SqOrder" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="totalprice" property="totalprice" jdbcType="VARCHAR" />
+    <result column="shopnum" property="shopnum" jdbcType="INTEGER" />
+    <result column="isdiscount" property="isdiscount" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="VARCHAR" />
+    <result column="receivable" property="receivable" jdbcType="VARCHAR" />
+    <result column="realPrice" property="realprice" jdbcType="VARCHAR" />
+    <result column="change" property="change" jdbcType="VARCHAR" />
+    <result column="operatorId" property="operatorid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createTime, updateTime, userId, userName, totalprice, shopnum, isdiscount, discount, 
+    receivable, realPrice, change, operatorId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiqi.oos.entity.SqOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sq_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sq_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sq_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiqi.oos.entity.SqOrderExample" >
+    delete from sq_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiqi.oos.entity.SqOrder" >
+    insert into sq_order (id, createTime, updateTime, 
+      userId, userName, totalprice, 
+      shopnum, isdiscount, discount, 
+      receivable, realPrice, change, 
+      operatorId)
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{totalprice,jdbcType=VARCHAR}, 
+      #{shopnum,jdbcType=INTEGER}, #{isdiscount,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{receivable,jdbcType=VARCHAR}, #{realprice,jdbcType=VARCHAR}, #{change,jdbcType=VARCHAR}, 
+      #{operatorid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiqi.oos.entity.SqOrder" >
+    insert into sq_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="totalprice != null" >
+        totalprice,
+      </if>
+      <if test="shopnum != null" >
+        shopnum,
+      </if>
+      <if test="isdiscount != null" >
+        isdiscount,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="receivable != null" >
+        receivable,
+      </if>
+      <if test="realprice != null" >
+        realPrice,
+      </if>
+      <if test="change != null" >
+        change,
+      </if>
+      <if test="operatorid != null" >
+        operatorId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="shopnum != null" >
+        #{shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="isdiscount != null" >
+        #{isdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="receivable != null" >
+        #{receivable,jdbcType=VARCHAR},
+      </if>
+      <if test="realprice != null" >
+        #{realprice,jdbcType=VARCHAR},
+      </if>
+      <if test="change != null" >
+        #{change,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiqi.oos.entity.SqOrderExample" resultType="java.lang.Integer" >
+    select count(*) from sq_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sq_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalprice != null" >
+        totalprice = #{record.totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopnum != null" >
+        shopnum = #{record.shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdiscount != null" >
+        isdiscount = #{record.isdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null" >
+        discount = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivable != null" >
+        receivable = #{record.receivable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realprice != null" >
+        realPrice = #{record.realprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.change != null" >
+        change = #{record.change,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorid != null" >
+        operatorId = #{record.operatorid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sq_order
+    set id = #{record.id,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      userName = #{record.username,jdbcType=VARCHAR},
+      totalprice = #{record.totalprice,jdbcType=VARCHAR},
+      shopnum = #{record.shopnum,jdbcType=INTEGER},
+      isdiscount = #{record.isdiscount,jdbcType=VARCHAR},
+      discount = #{record.discount,jdbcType=VARCHAR},
+      receivable = #{record.receivable,jdbcType=VARCHAR},
+      realPrice = #{record.realprice,jdbcType=VARCHAR},
+      change = #{record.change,jdbcType=VARCHAR},
+      operatorId = #{record.operatorid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiqi.oos.entity.SqOrder" >
+    update sq_order
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="totalprice != null" >
+        totalprice = #{totalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="shopnum != null" >
+        shopnum = #{shopnum,jdbcType=INTEGER},
+      </if>
+      <if test="isdiscount != null" >
+        isdiscount = #{isdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="receivable != null" >
+        receivable = #{receivable,jdbcType=VARCHAR},
+      </if>
+      <if test="realprice != null" >
+        realPrice = #{realprice,jdbcType=VARCHAR},
+      </if>
+      <if test="change != null" >
+        change = #{change,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        operatorId = #{operatorid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiqi.oos.entity.SqOrder" >
+    update sq_order
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      totalprice = #{totalprice,jdbcType=VARCHAR},
+      shopnum = #{shopnum,jdbcType=INTEGER},
+      isdiscount = #{isdiscount,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=VARCHAR},
+      receivable = #{receivable,jdbcType=VARCHAR},
+      realPrice = #{realprice,jdbcType=VARCHAR},
+      change = #{change,jdbcType=VARCHAR},
+      operatorId = #{operatorid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -13,7 +13,7 @@ public class SqShoppingcar {
 
     private Integer shopnum;
 
-    private Integer totalpirce;
+    private Integer totalprice;
 
     private String diningtableid;
 
@@ -57,12 +57,12 @@ public class SqShoppingcar {
         this.shopnum = shopnum;
     }
 
-    public Integer getTotalpirce() {
-        return totalpirce;
+    public Integer getTotalprice() {
+        return totalprice;
     }
 
-    public void setTotalpirce(Integer totalpirce) {
-        this.totalpirce = totalpirce;
+    public void setTotalprice(Integer totalprice) {
+        this.totalprice = totalprice;
     }
 
     public String getDiningtableid() {

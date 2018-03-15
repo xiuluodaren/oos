@@ -33,7 +33,7 @@
 			 $('#datagrid').datagrid({
 				 url:'${pageContext.request.contextPath }/serving/findEasyUI'
 			 });
-		 },30000);
+		 },AjaxTime);
 		
 		$('#datagrid').datagrid({
 			title:'上菜',

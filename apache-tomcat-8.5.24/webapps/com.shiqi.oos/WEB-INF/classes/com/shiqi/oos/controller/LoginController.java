@@ -72,7 +72,7 @@ public class LoginController {
 
 				if (user == null) {
 					request.setAttribute("errorMsg", "用户名密码不匹配");
-					request.getRequestDispatcher(baseURL + "/login.jsp").forward(request, response);
+					request.getRequestDispatcher("/login.jsp").forward(request, response);
 				}else {
 					request.getSession().setAttribute("user", user);
 					response.sendRedirect(baseURL + "/index.jsp");
@@ -80,7 +80,7 @@ public class LoginController {
 				}
 			}else {
 				request.setAttribute("errorMsg", "验证码错误");
-				request.getRequestDispatcher(baseURL + "/login.jsp").forward(request, response);
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block

@@ -425,63 +425,63 @@ public class SqShoppingcarExample {
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceIsNull() {
-            addCriterion("totalPirce is null");
+        public Criteria andTotalpriceIsNull() {
+            addCriterion("totalprice is null");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceIsNotNull() {
-            addCriterion("totalPirce is not null");
+        public Criteria andTotalpriceIsNotNull() {
+            addCriterion("totalprice is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceEqualTo(Integer value) {
-            addCriterion("totalPirce =", value, "totalpirce");
+        public Criteria andTotalpriceEqualTo(Integer value) {
+            addCriterion("totalprice =", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceNotEqualTo(Integer value) {
-            addCriterion("totalPirce <>", value, "totalpirce");
+        public Criteria andTotalpriceNotEqualTo(Integer value) {
+            addCriterion("totalprice <>", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceGreaterThan(Integer value) {
-            addCriterion("totalPirce >", value, "totalpirce");
+        public Criteria andTotalpriceGreaterThan(Integer value) {
+            addCriterion("totalprice >", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("totalPirce >=", value, "totalpirce");
+        public Criteria andTotalpriceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("totalprice >=", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceLessThan(Integer value) {
-            addCriterion("totalPirce <", value, "totalpirce");
+        public Criteria andTotalpriceLessThan(Integer value) {
+            addCriterion("totalprice <", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceLessThanOrEqualTo(Integer value) {
-            addCriterion("totalPirce <=", value, "totalpirce");
+        public Criteria andTotalpriceLessThanOrEqualTo(Integer value) {
+            addCriterion("totalprice <=", value, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceIn(List<Integer> values) {
-            addCriterion("totalPirce in", values, "totalpirce");
+        public Criteria andTotalpriceIn(List<Integer> values) {
+            addCriterion("totalprice in", values, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceNotIn(List<Integer> values) {
-            addCriterion("totalPirce not in", values, "totalpirce");
+        public Criteria andTotalpriceNotIn(List<Integer> values) {
+            addCriterion("totalprice not in", values, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceBetween(Integer value1, Integer value2) {
-            addCriterion("totalPirce between", value1, value2, "totalpirce");
+        public Criteria andTotalpriceBetween(Integer value1, Integer value2) {
+            addCriterion("totalprice between", value1, value2, "totalprice");
             return (Criteria) this;
         }
 
-        public Criteria andTotalpirceNotBetween(Integer value1, Integer value2) {
-            addCriterion("totalPirce not between", value1, value2, "totalpirce");
+        public Criteria andTotalpriceNotBetween(Integer value1, Integer value2) {
+            addCriterion("totalprice not between", value1, value2, "totalprice");
             return (Criteria) this;
         }
     }

@@ -3,6 +3,8 @@ package com.shiqi.oos.mapper;
 import com.shiqi.oos.entity.SqShoppingcar;
 import com.shiqi.oos.entity.SqShoppingcarExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SqShoppingcarMapper {
@@ -29,4 +31,12 @@ public interface SqShoppingcarMapper {
     int updateByPrimaryKeySelective(SqShoppingcar record);
 
     int updateByPrimaryKey(SqShoppingcar record);
+
+    /**
+     * 根据桌号和用户名查询购物车
+     * @param diningTableId
+     * @param username
+     * @return
+     */
+	List<SqShoppingcar> selectByDiningTableIdAndUsername(Map<String, String> map);
 }
