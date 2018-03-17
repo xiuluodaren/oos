@@ -1,10 +1,12 @@
 package com.shiqi.oos.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.fabric.xmlrpc.base.Data;
 import com.shiqi.oos.entity.SqShoppingcar;
 import com.shiqi.oos.entity.SqShoppingcarExample;
 import com.shiqi.oos.entity.SqShoppingcardetail;
@@ -55,7 +57,7 @@ public class FoodServiceImpl implements IFoodService {
 	}
 	
 	/**
-	 * 根据购物车id配餐
+	 * 根据购物车详情id配餐
 	 * @param id
 	 * @return
 	 */
@@ -69,8 +71,15 @@ public class FoodServiceImpl implements IFoodService {
 		
 		//0未准备 1配菜中 2待上菜 3已上菜
 		detail.setStatus("2");
+		detail.setUpdatetime(new Date());
 		
 		if (detailMapper.updateByPrimaryKey(detail) > 0) {
+			
+			//更新购物车
+			SqShoppingcar car = carMapper.selectByPrimaryKey(detail.getShoppingcarid());
+			car.setUpdatetime(new Date());
+			carMapper.updateByPrimaryKey(car);
+			
 			return true;
 		}else {
 			return false;

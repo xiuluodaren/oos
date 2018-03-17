@@ -311,4 +311,24 @@ AND sc.diningTableId = #{diningTableId}
 AND su.username = #{username}
 </if>
 </select>
+  <!-- 根据购物车id查询购物车全部信息 -->
+ <select id="selectByShopCarId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	SELECT
+	sc.*, d.*, d.id AS detail_id ,
+	d.shopNum AS number ,
+	d.createTime AS d_createTime ,
+	d.updateTime AS d_updateTime ,
+	sd.*, sd.id AS dishes_id,
+	su.*,su.isvip as user_isvip
+FROM
+	sq_shoppingCar sc ,
+	sq_shoppingCarDetail d ,
+	sq_dishes sd ,
+	sq_user su
+WHERE
+	d.shoppingCarId = sc.id
+AND d.shopId = sd.id
+AND sc.userid = su.id
+AND sc.id = #{shopCarId}
+</select>
 </mapper>

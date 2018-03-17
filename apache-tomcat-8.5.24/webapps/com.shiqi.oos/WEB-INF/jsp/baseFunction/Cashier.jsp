@@ -46,14 +46,14 @@
 			pagination:true,
 			fit:true,
 			toolbar:'#tb',
-			url:'${pageContext.request.contextPath }/cashier/findEasyUI',
+			url:'${pageContext.request.contextPath }/order/findEasyUI',
 			columns:[[
 				{field:'diningtableid',title:'桌号',width:10,sortable:'true',
 					sorter:function(a,b){  
 						return parseInt(a) > parseInt(b) ? 1 : -1; 
 				}},
-				{field:'userid',title:'用户编号',width:10},
-				{field:'username',title:'用户名',width:10,
+				{field:'userid',title:'用户编号',width:20},
+				{field:'username',title:'用户名',width:20,
 					formatter: function(value,row,index){
 					if (row.user.username){
 						return row.user.username;
@@ -76,7 +76,7 @@
 					sorter:function(a,b){  
 						return parseInt(a) > parseInt(b) ? 1 : -1; 
 				}},
-				{field:'createtime',title:'创建时间',width:10,sortable:'true',
+				{field:'createtime',title:'创建时间',width:20,sortable:'true',
 					sorter:function(a,b){  
 						return parseInt(a) > parseInt(b) ? 1 : -1; 
 					},formatter: function(value,row,index){
@@ -110,7 +110,7 @@
 					+ value.xiaoji + "</td></tr>";
 				});
 				
-				html += "<tr><td colspan=\"6\" align=\"center\"><input type='button' style='color:red;font-size: 20px;' onclick='cashier(" + rowIndex + ");' value='结账' /></td></tr>";
+				html += "<tr><td colspan=\"6\" align=\"center\"><input type='button' style='color:red;font-size: 20px;' onclick='order(" + rowIndex + ");' value='结账' /></td></tr>";
 				
 				html += "</table>";
 				return html;
@@ -119,9 +119,9 @@
 	});
 
 	//结账
-	function cashier(rowIndex)
+	function order(rowIndex)
 	{
-		$("#cashierForm").form("clear");
+		$("#orderForm").form("clear");
 		$('#datagrid').datagrid("selectRow",rowIndex);
 		var rowData = $('#datagrid').datagrid("getSelected");
 		
@@ -143,7 +143,7 @@
 		$("#isdiscount").val(rowData.user.isvip);
 		showDiscount();
 		
-		$("#cashierWindow").window("open");
+		$("#orderWindow").window("open");
 	}
 	
 	//是否显示折扣
@@ -164,7 +164,7 @@
 		
 		if (discount == '1') {
 			$("#showDiscount").attr("hidden",null);
-			$('#cashierWindow').panel('resize',{
+			$('#orderWindow').panel('resize',{
 				height: 290
 			});
 			
@@ -174,7 +174,7 @@
 			$("#discount").validatebox("enableValidation");
 		}else{
 			$("#showDiscount").attr("hidden","hidden");
-			$('#cashierWindow').panel('resize',{
+			$('#orderWindow').panel('resize',{
 				height: 270
 			});
 			
@@ -182,6 +182,7 @@
 			$("#discount").validatebox("disableValidation");
 		}
 		
+		discountChange();
 	}
 	
 	//折扣改变，用于手工输入折扣数
@@ -232,20 +233,28 @@
 	//关闭窗口
 	function closeWindow()
 	{
-		$("#cashierWindow").window("close");
+		$("#orderWindow").window("close");
 	}
 	
 	//确定收银
 	function confirm()
 	{
-		var success = $("#cashierForm").form("validate");
+		var success = $("#orderForm").form("validate");
 		if (success)
 		{
 			$.messager.confirm("提示","请确定收银结果正确",function(r){
 				if (r) {
-					var json = $("#cashierForm").serialize();
+					var json = $("#orderForm").serialize();
 					
-					alert(json);
+					$.post("${pageContext.request.contextPath}/order/confirmOrder",json,function(data){
+						$.messager.alert("提示",data.message);
+						
+						if (data.success == "true")
+						{
+							window.location.reload();	
+						}
+						
+					});
 					
 				}
 			});
@@ -287,12 +296,12 @@
 	<table id="datagrid"></table>
 	
 	<!--收银窗口-->
-    <div id="cashierWindow" class="easyui-window" title="收银" collapsible="false" minimizable="false" modal="true" closed="true" resizable="true"
+    <div id="orderWindow" class="easyui-window" title="收银" collapsible="false" minimizable="false" modal="true" closed="true" resizable="true"
         maximizable="false" icon="icon-save"  style="width: 300px; height: 290px; padding: 5px;
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-            		<form id="cashierForm">
+            		<form id="orderForm">
             			<input id="shopCarId" name="shopCarId" type="hidden" />
 		                <table cellpadding=3>
 		                    <tr>
@@ -345,19 +354,19 @@
     </div>
     
     <div id="tb">
-			<table style="height: 100%;width: 850px;">
+			<table style="height: 100%;width: 600px;">
 				<tr>
 					<td style="width:50px;text-align: right;">查询:</td>
-					<td style="width:80px;text-align: right;">
+					<td style="width:50px;text-align: right;">
 						桌号:
 					</td>
-					<td style="width:200px;text-align: right;">
+					<td style="width:120px;text-align: right;">
 						<input id="search-diningtableid" name="diningtableid" style="width:100%;" />
 					</td>
-					<td style="width:120px;text-align: right;">
+					<td style="width:60px;text-align: right;">
 						用户名:
 					</td>
-					<td style="width:200px;text-align: right;">
+					<td style="width:120px;text-align: right;">
 						<input id="search-username" name="username" style="width:100%;" />
 					</td>
 					<td style="width:100px;text-align: right;">

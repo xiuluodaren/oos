@@ -88,6 +88,11 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 					//detail.setStatus("0");
 					if (shoppingcardetailMapper.updateByPrimaryKey(detail) > 0)
 					{
+						
+						//更新购物车
+						car.setUpdatetime(new Date());
+						shoppingCarMapper.updateByPrimaryKey(car);
+						
 						return true;
 					}else {
 						return false;
@@ -114,6 +119,11 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 			//保存商品
 			 if (shoppingcardetailMapper.insert(detail) > 0)
 			{
+				 
+				//更新购物车
+				car.setUpdatetime(new Date());
+				shoppingCarMapper.updateByPrimaryKey(car);
+				 
 				return true;
 			}else {
 				return false;
@@ -203,6 +213,10 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 		//0未准备 1配菜中 2待上菜 3已上菜
 		if (shoppingcardetail.getStatus().equals("0")) {
 			if (shoppingcardetailMapper.deleteByPrimaryKey(detailId) > 0) {
+				//更新购物车
+				SqShoppingcar car = shoppingCarMapper.selectByPrimaryKey(shoppingcardetail.getShoppingcarid());
+				car.setUpdatetime(new Date());
+				shoppingCarMapper.updateByPrimaryKey(car);
 				return true;
 			}
 		}
@@ -225,6 +239,7 @@ public class ShoppingCarServiceImpl implements IShoppingCarService {
 		}
 		
 		SqShoppingcar car = shoppingCarMapper.selectDetailByUserId(userId);
+		car.setUpdatetime(new Date());
 		car.setDiningtableid(zhuohao);
 		diningtable.setShopcarid(car.getId());
 		diningtable.setStatus("1");

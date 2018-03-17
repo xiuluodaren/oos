@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.shiqi.oos.mapper.SqShoppingcardetailMapper" >
-  <resultMap id="BaseResultMap" type="com.shiqi.oos.entity.SqShoppingcardetail" >
+<mapper namespace="com.shiqi.oos.mapper.SqOrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.shiqi.oos.entity.SqOrderdetail" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="shoppingCarId" property="shoppingcarid" jdbcType="VARCHAR" />
-    <result column="shopId" property="shopid" jdbcType="VARCHAR" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
-    <result column="shopNum" property="shopnum" jdbcType="INTEGER" />
-    <result column="xiaoji" property="xiaoji" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderid" jdbcType="VARCHAR" />
+    <result column="shopId" property="shopid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="originalprice" property="originalprice" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="isvip" property="isvip" jdbcType="VARCHAR" />
+    <result column="shopnum" property="shopnum" jdbcType="INTEGER" />
+    <result column="xiaoji" property="xiaoji" jdbcType="VARCHAR" />
   </resultMap>
+  
+<!-- 根据订单id查询订单详情 -->
+ <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select 
+   <include refid="Base_Column_List" />
+   from sq_orderDetail
+   where orderId = #{id,jdbcType=VARCHAR}
+ </select>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -70,15 +82,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, shoppingCarId, shopId, createTime, updateTime, shopNum, xiaoji, status
+    id, createTime, updateTime, orderId, shopId, name, originalprice, price, isvip, shopnum, 
+    xiaoji
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiqi.oos.entity.SqShoppingcardetailExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiqi.oos.entity.SqOrderdetailExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sq_shoppingCarDetail
+    from sq_orderDetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,38 +102,34 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from sq_shoppingCarDetail
+    from sq_orderDetail
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from sq_shoppingCarDetail
+    delete from sq_orderDetail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shiqi.oos.entity.SqShoppingcardetailExample" >
-    delete from sq_shoppingCarDetail
+  <delete id="deleteByExample" parameterType="com.shiqi.oos.entity.SqOrderdetailExample" >
+    delete from sq_orderDetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shiqi.oos.entity.SqShoppingcardetail" >
-    insert into sq_shoppingCarDetail (id, shoppingCarId, shopId, 
-      createTime, updateTime, shopNum, 
-      xiaoji, status)
-    values (#{id,jdbcType=VARCHAR}, #{shoppingcarid,jdbcType=VARCHAR}, #{shopid,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{shopnum,jdbcType=INTEGER}, 
-      #{xiaoji,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.shiqi.oos.entity.SqOrderdetail" >
+    insert into sq_orderDetail (id, createTime, updateTime, 
+      orderId, shopId, name, 
+      originalprice, price, isvip, 
+      shopnum, xiaoji)
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{orderid,jdbcType=VARCHAR}, #{shopid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{originalprice,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{isvip,jdbcType=VARCHAR}, 
+      #{shopnum,jdbcType=INTEGER}, #{xiaoji,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.shiqi.oos.entity.SqShoppingcardetail" >
-    insert into sq_shoppingCarDetail
+  <insert id="insertSelective" parameterType="com.shiqi.oos.entity.SqOrderdetail" >
+    insert into sq_orderDetail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
-      </if>
-      <if test="shoppingcarid != null" >
-        shoppingCarId,
-      </if>
-      <if test="shopid != null" >
-        shopId,
       </if>
       <if test="createtime != null" >
         createTime,
@@ -128,25 +137,34 @@
       <if test="updatetime != null" >
         updateTime,
       </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="originalprice != null" >
+        originalprice,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="isvip != null" >
+        isvip,
+      </if>
       <if test="shopnum != null" >
-        shopNum,
+        shopnum,
       </if>
       <if test="xiaoji != null" >
         xiaoji,
-      </if>
-      <if test="status != null" >
-        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="shoppingcarid != null" >
-        #{shoppingcarid,jdbcType=VARCHAR},
-      </if>
-      <if test="shopid != null" >
-        #{shopid,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
@@ -154,34 +172,43 @@
       <if test="updatetime != null" >
         #{updatetime,jdbcType=TIMESTAMP},
       </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopid != null" >
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="originalprice != null" >
+        #{originalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="isvip != null" >
+        #{isvip,jdbcType=VARCHAR},
+      </if>
       <if test="shopnum != null" >
         #{shopnum,jdbcType=INTEGER},
       </if>
       <if test="xiaoji != null" >
-        #{xiaoji,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
+        #{xiaoji,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shiqi.oos.entity.SqShoppingcardetailExample" resultType="java.lang.Integer" >
-    select count(*) from sq_shoppingCarDetail
+  <select id="countByExample" parameterType="com.shiqi.oos.entity.SqOrderdetailExample" resultType="java.lang.Integer" >
+    select count(*) from sq_orderDetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sq_shoppingCarDetail
+    update sq_orderDetail
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shoppingcarid != null" >
-        shoppingCarId = #{record.shoppingcarid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shopid != null" >
-        shopId = #{record.shopid,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -189,14 +216,29 @@
       <if test="record.updatetime != null" >
         updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originalprice != null" >
+        originalprice = #{record.originalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvip != null" >
+        isvip = #{record.isvip,jdbcType=VARCHAR},
+      </if>
       <if test="record.shopnum != null" >
-        shopNum = #{record.shopnum,jdbcType=INTEGER},
+        shopnum = #{record.shopnum,jdbcType=INTEGER},
       </if>
       <if test="record.xiaoji != null" >
-        xiaoji = #{record.xiaoji,jdbcType=INTEGER},
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=VARCHAR},
+        xiaoji = #{record.xiaoji,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -204,55 +246,70 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sq_shoppingCarDetail
+    update sq_orderDetail
     set id = #{record.id,jdbcType=VARCHAR},
-      shoppingCarId = #{record.shoppingcarid,jdbcType=VARCHAR},
-      shopId = #{record.shopid,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      shopNum = #{record.shopnum,jdbcType=INTEGER},
-      xiaoji = #{record.xiaoji,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=VARCHAR}
+      orderId = #{record.orderid,jdbcType=VARCHAR},
+      shopId = #{record.shopid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      originalprice = #{record.originalprice,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      isvip = #{record.isvip,jdbcType=VARCHAR},
+      shopnum = #{record.shopnum,jdbcType=INTEGER},
+      xiaoji = #{record.xiaoji,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shiqi.oos.entity.SqShoppingcardetail" >
-    update sq_shoppingCarDetail
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiqi.oos.entity.SqOrderdetail" >
+    update sq_orderDetail
     <set >
-      <if test="shoppingcarid != null" >
-        shoppingCarId = #{shoppingcarid,jdbcType=VARCHAR},
-      </if>
-      <if test="shopid != null" >
-        shopId = #{shopid,jdbcType=VARCHAR},
-      </if>
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
         updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="originalprice != null" >
+        originalprice = #{originalprice,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="isvip != null" >
+        isvip = #{isvip,jdbcType=VARCHAR},
+      </if>
       <if test="shopnum != null" >
-        shopNum = #{shopnum,jdbcType=INTEGER},
+        shopnum = #{shopnum,jdbcType=INTEGER},
       </if>
       <if test="xiaoji != null" >
-        xiaoji = #{xiaoji,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
+        xiaoji = #{xiaoji,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shiqi.oos.entity.SqShoppingcardetail" >
-    update sq_shoppingCarDetail
-    set shoppingCarId = #{shoppingcarid,jdbcType=VARCHAR},
-      shopId = #{shopid,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+  <update id="updateByPrimaryKey" parameterType="com.shiqi.oos.entity.SqOrderdetail" >
+    update sq_orderDetail
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
       updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      shopNum = #{shopnum,jdbcType=INTEGER},
-      xiaoji = #{xiaoji,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR}
+      orderId = #{orderid,jdbcType=VARCHAR},
+      shopId = #{shopid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      originalprice = #{originalprice,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      isvip = #{isvip,jdbcType=VARCHAR},
+      shopnum = #{shopnum,jdbcType=INTEGER},
+      xiaoji = #{xiaoji,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

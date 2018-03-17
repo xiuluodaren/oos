@@ -42,7 +42,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="sq_menu"></table>
+		<!-- <table schema="" tableName="sq_menu"></table>
 		<table schema="" tableName="sq_dishes"></table>
 		<table schema="" tableName="sq_dishesType"></table>
 		<table schema="" tableName="sq_shoppingCar"></table>
@@ -51,7 +51,7 @@
 		<table schema="" tableName="sq_diningTable"></table>
 		<table schema="" tableName="sq_role"></table>
 		<table schema="" tableName="sq_user_role"></table>
-		<table schema="" tableName="sq_role_menu"></table>
+		<table schema="" tableName="sq_role_menu"></table> -->
 		<table schema="" tableName="sq_order"></table>
 		<table schema="" tableName="sq_orderDetail"></table>
 

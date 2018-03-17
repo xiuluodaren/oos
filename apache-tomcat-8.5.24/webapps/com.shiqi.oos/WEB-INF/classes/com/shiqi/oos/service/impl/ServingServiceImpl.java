@@ -1,5 +1,6 @@
 package com.shiqi.oos.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +70,15 @@ public class ServingServiceImpl implements IServingService {
 		
 		//0未准备 1配菜中 2待上菜 3已上菜
 		detail.setStatus("3");
+		detail.setUpdatetime(new Date());
 		
 		if (detailMapper.updateByPrimaryKey(detail) > 0) {
+			
+			//更新购物车
+			SqShoppingcar car = carMapper.selectByPrimaryKey(detail.getShoppingcarid());
+			car.setUpdatetime(new Date());
+			carMapper.updateByPrimaryKey(car);
+			
 			return true;
 		}else {
 			return false;

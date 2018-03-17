@@ -845,73 +845,73 @@ public class SqOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andChangeIsNull() {
-            addCriterion("change is null");
+        public Criteria andChangemoneyIsNull() {
+            addCriterion("changeMoney is null");
             return (Criteria) this;
         }
 
-        public Criteria andChangeIsNotNull() {
-            addCriterion("change is not null");
+        public Criteria andChangemoneyIsNotNull() {
+            addCriterion("changeMoney is not null");
             return (Criteria) this;
         }
 
-        public Criteria andChangeEqualTo(String value) {
-            addCriterion("change =", value, "change");
+        public Criteria andChangemoneyEqualTo(String value) {
+            addCriterion("changeMoney =", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeNotEqualTo(String value) {
-            addCriterion("change <>", value, "change");
+        public Criteria andChangemoneyNotEqualTo(String value) {
+            addCriterion("changeMoney <>", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeGreaterThan(String value) {
-            addCriterion("change >", value, "change");
+        public Criteria andChangemoneyGreaterThan(String value) {
+            addCriterion("changeMoney >", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeGreaterThanOrEqualTo(String value) {
-            addCriterion("change >=", value, "change");
+        public Criteria andChangemoneyGreaterThanOrEqualTo(String value) {
+            addCriterion("changeMoney >=", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeLessThan(String value) {
-            addCriterion("change <", value, "change");
+        public Criteria andChangemoneyLessThan(String value) {
+            addCriterion("changeMoney <", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeLessThanOrEqualTo(String value) {
-            addCriterion("change <=", value, "change");
+        public Criteria andChangemoneyLessThanOrEqualTo(String value) {
+            addCriterion("changeMoney <=", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeLike(String value) {
-            addCriterion("change like", value, "change");
+        public Criteria andChangemoneyLike(String value) {
+            addCriterion("changeMoney like", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeNotLike(String value) {
-            addCriterion("change not like", value, "change");
+        public Criteria andChangemoneyNotLike(String value) {
+            addCriterion("changeMoney not like", value, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeIn(List<String> values) {
-            addCriterion("change in", values, "change");
+        public Criteria andChangemoneyIn(List<String> values) {
+            addCriterion("changeMoney in", values, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeNotIn(List<String> values) {
-            addCriterion("change not in", values, "change");
+        public Criteria andChangemoneyNotIn(List<String> values) {
+            addCriterion("changeMoney not in", values, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeBetween(String value1, String value2) {
-            addCriterion("change between", value1, value2, "change");
+        public Criteria andChangemoneyBetween(String value1, String value2) {
+            addCriterion("changeMoney between", value1, value2, "changemoney");
             return (Criteria) this;
         }
 
-        public Criteria andChangeNotBetween(String value1, String value2) {
-            addCriterion("change not between", value1, value2, "change");
+        public Criteria andChangemoneyNotBetween(String value1, String value2) {
+            addCriterion("changeMoney not between", value1, value2, "changemoney");
             return (Criteria) this;
         }
 

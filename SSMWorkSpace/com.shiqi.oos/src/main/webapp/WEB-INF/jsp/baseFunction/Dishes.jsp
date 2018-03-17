@@ -42,7 +42,7 @@ function detailDishes(dishesId)
 <c:if test="${dishesList != null}">
 	<c:forEach items="${dishesList }" var="item">
 		<div class="itemDiv" style="width:25%;float:left;text-align: center;margin-bottom: 5px;">
-			<image src="${pageContext.request.contextPath }/uploadImages/${item.pic }" style="width:80%;"></image></br>
+			<image src="${pageContext.request.contextPath }/uploadImages/${item.pic }" style="width:100px;height:100px;"></image></br>
 			<label>菜品名称:${item.name }</label></br>
 			<label><s>原价:${item.originalprice}元</s></label></br>
 			<label>会员价:<font color="red">${item.price}元</font></label></br>

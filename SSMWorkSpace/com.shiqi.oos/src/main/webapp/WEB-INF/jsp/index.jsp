@@ -201,14 +201,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<div data-options="region:'west',split:true,title:'菜单导航'"
-		style="width:200px">
+		style="width:150px">
 		<div class="easyui-accordion" fit="true" border="false">
-			<!-- <div title="基本功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
-				<ul id="baseFunction"></ul>
-			</div>
-			<div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">  
-				<ul id="systemMarger"></ul>
-			</div> -->
 			<c:forEach items="${topList }" var="menu">
 				<div title="${menu.menuname}" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
 					<ul id="topMenuId${menu.id }"></ul>
@@ -235,9 +229,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div style="color: #999; font-size: 8pt;">
 							诗奇自助点餐系统 by <a href="http://xiuluo.site/" target="block">王诗奇</a>
 						</div>
-					</td>
-					<td style="width: *;" class="co1"><span id="online"
-						style="background: url(${pageContext.request.contextPath }/images/online.png) no-repeat left;padding-left:18px;margin-left:3px;font-size:8pt;color:#005590;">在线人数:1</span>
 					</td>
 				</tr>
 			</tbody>

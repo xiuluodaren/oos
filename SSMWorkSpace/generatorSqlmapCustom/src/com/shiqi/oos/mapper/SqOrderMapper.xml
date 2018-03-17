@@ -13,7 +13,7 @@
     <result column="discount" property="discount" jdbcType="VARCHAR" />
     <result column="receivable" property="receivable" jdbcType="VARCHAR" />
     <result column="realPrice" property="realprice" jdbcType="VARCHAR" />
-    <result column="change" property="change" jdbcType="VARCHAR" />
+    <result column="changeMoney" property="changemoney" jdbcType="VARCHAR" />
     <result column="operatorId" property="operatorid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, createTime, updateTime, userId, userName, totalprice, shopnum, isdiscount, discount, 
-    receivable, realPrice, change, operatorId
+    receivable, realPrice, changeMoney, operatorId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiqi.oos.entity.SqOrderExample" >
     select
@@ -112,12 +112,12 @@
     insert into sq_order (id, createTime, updateTime, 
       userId, userName, totalprice, 
       shopnum, isdiscount, discount, 
-      receivable, realPrice, change, 
+      receivable, realPrice, changeMoney, 
       operatorId)
     values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{totalprice,jdbcType=VARCHAR}, 
       #{shopnum,jdbcType=INTEGER}, #{isdiscount,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
-      #{receivable,jdbcType=VARCHAR}, #{realprice,jdbcType=VARCHAR}, #{change,jdbcType=VARCHAR}, 
+      #{receivable,jdbcType=VARCHAR}, #{realprice,jdbcType=VARCHAR}, #{changemoney,jdbcType=VARCHAR}, 
       #{operatorid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shiqi.oos.entity.SqOrder" >
@@ -156,8 +156,8 @@
       <if test="realprice != null" >
         realPrice,
       </if>
-      <if test="change != null" >
-        change,
+      <if test="changemoney != null" >
+        changeMoney,
       </if>
       <if test="operatorid != null" >
         operatorId,
@@ -197,8 +197,8 @@
       <if test="realprice != null" >
         #{realprice,jdbcType=VARCHAR},
       </if>
-      <if test="change != null" >
-        #{change,jdbcType=VARCHAR},
+      <if test="changemoney != null" >
+        #{changemoney,jdbcType=VARCHAR},
       </if>
       <if test="operatorid != null" >
         #{operatorid,jdbcType=VARCHAR},
@@ -247,8 +247,8 @@
       <if test="record.realprice != null" >
         realPrice = #{record.realprice,jdbcType=VARCHAR},
       </if>
-      <if test="record.change != null" >
-        change = #{record.change,jdbcType=VARCHAR},
+      <if test="record.changemoney != null" >
+        changeMoney = #{record.changemoney,jdbcType=VARCHAR},
       </if>
       <if test="record.operatorid != null" >
         operatorId = #{record.operatorid,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
       discount = #{record.discount,jdbcType=VARCHAR},
       receivable = #{record.receivable,jdbcType=VARCHAR},
       realPrice = #{record.realprice,jdbcType=VARCHAR},
-      change = #{record.change,jdbcType=VARCHAR},
+      changeMoney = #{record.changemoney,jdbcType=VARCHAR},
       operatorId = #{record.operatorid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -310,8 +310,8 @@
       <if test="realprice != null" >
         realPrice = #{realprice,jdbcType=VARCHAR},
       </if>
-      <if test="change != null" >
-        change = #{change,jdbcType=VARCHAR},
+      <if test="changemoney != null" >
+        changeMoney = #{changemoney,jdbcType=VARCHAR},
       </if>
       <if test="operatorid != null" >
         operatorId = #{operatorid,jdbcType=VARCHAR},
@@ -331,7 +331,7 @@
       discount = #{discount,jdbcType=VARCHAR},
       receivable = #{receivable,jdbcType=VARCHAR},
       realPrice = #{realprice,jdbcType=VARCHAR},
-      change = #{change,jdbcType=VARCHAR},
+      changeMoney = #{changemoney,jdbcType=VARCHAR},
       operatorId = #{operatorid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>

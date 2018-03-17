@@ -25,7 +25,7 @@ public class SqOrder {
 
     private String realprice;
 
-    private String change;
+    private String changemoney;
 
     private String operatorid;
 
@@ -117,12 +117,12 @@ public class SqOrder {
         this.realprice = realprice == null ? null : realprice.trim();
     }
 
-    public String getChange() {
-        return change;
+    public String getChangemoney() {
+        return changemoney;
     }
 
-    public void setChange(String change) {
-        this.change = change == null ? null : change.trim();
+    public void setChangemoney(String changemoney) {
+        this.changemoney = changemoney == null ? null : changemoney.trim();
     }
 
     public String getOperatorid() {
