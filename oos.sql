@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : utf-8
 
- Date: 03/17/2018 17:02:40 PM
+ Date: 03/18/2018 13:48:43 PM
 */
 
 SET NAMES utf8mb4;
@@ -99,7 +99,7 @@ CREATE TABLE `sq_menu` (
 --  Records of `sq_menu`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '收入报表', '13', null, '0'), ('15', '订单查询', '13', '/page/admin/orderDetail', '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('20', '菜品管理', '7', '/dishes/getUI', '0'), ('21', '菜品类型管理', '7', '/page/admin/dishesTypeAdmin', '1'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', '/page/baseFunction/Serving', '4'), ('5', '配餐', '1', '/page/baseFunction/Food', '3'), ('6', '收银', '1', '/page/baseFunction/Cashier', '5'), ('7', '菜单管理', '2', null, '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
+INSERT INTO `sq_menu` VALUES ('1', '基础功能', null, null, '0'), ('13', '财务管理', '2', '/test/xxxx', '5'), ('14', '收入报表', '13', '/page/admin/IncomeStatement', '0'), ('15', '订单查询', '13', '/page/admin/orderDetail', '0'), ('16', '购物车', '1', '/shoppingCar/getUI', '1'), ('17', '用户管理', '8', '/page/admin/userAdmin', '0'), ('18', '角色管理', '8', '/page/admin/roleAdmin', '1'), ('19', '模块管理', '8', '/page/admin/menuAdmin', '2'), ('2', '系统管理', null, null, '0'), ('20', '菜品管理', '7', '/dishes/getUI', '0'), ('21', '菜品类型管理', '7', '/page/admin/dishesTypeAdmin', '1'), ('3', '点餐', '1', '/page/baseFunction/Order', '0'), ('4', '上菜', '1', '/page/baseFunction/Serving', '4'), ('5', '配餐', '1', '/page/baseFunction/Food', '3'), ('6', '收银', '1', '/page/baseFunction/Cashier', '5'), ('7', '菜单管理', '2', null, '0'), ('8', '权限管理', '2', null, '3'), ('9', '桌位管理', '2', '/page/admin/diningTableAdmin', '1');
 COMMIT;
 
 -- ----------------------------
