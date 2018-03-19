@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shiqi.oos.controller.base.BaseController;
 import com.shiqi.oos.entity.SqUser;
 import com.shiqi.oos.service.IMenuService;
 import com.shiqi.oos.service.IUserService;
@@ -29,7 +31,7 @@ import com.shiqi.oos.utils.MD5Utils;
  */
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
@@ -49,6 +51,8 @@ public class LoginController {
 		String code = (String) request.getSession().getAttribute("key");
 		
 		String baseURL = request.getContextPath();
+
+		logger.info("用户名" + username + "密码" + password);
 		
 		try {
 			if (checkcode.equals(code)) {

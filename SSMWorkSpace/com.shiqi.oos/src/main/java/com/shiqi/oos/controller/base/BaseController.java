@@ -1,5 +1,6 @@
 package com.shiqi.oos.controller.base;
 
+import org.apache.log4j.Logger;
 
 /**
  * BaseController
@@ -17,5 +18,7 @@ public class BaseController {
 	 * 失败
 	 */
 	public final static String FAIL = "false";
+	
+	protected Logger logger = Logger.getLogger(this.getClass());
 	
 }
